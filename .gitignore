@@ -12,4 +12,9 @@ run.sh
 # archived files
 backend/src/api/textyl.js
 backend/src/api/lastfm.js
+
+# developer environment
 node_modules
+.vscode/settings.json
+/.vscode
+pnpm-lock.yaml

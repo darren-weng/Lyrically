@@ -13,6 +13,7 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "flexsearch": "^0.7.43",
     "kuroshiro": "~1.1.2",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
     "node-fetch": "^3.3.2",

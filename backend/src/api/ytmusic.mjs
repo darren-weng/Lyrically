@@ -18,11 +18,14 @@ export async function searchMusic(title) {
     music[0].artists[0].name,
     music[0].album,
     music[0].duration.totalSeconds,
-    music[0].youtubeId
+    music[0].youtubeId,
+    music[0].thumbnailUrl,
   ];
-
+  
   return musicData;
 }
+
+searchMusic("fortnight")
 
 async function searchAlbum(album) {
   const albums = await searchAlbums(album);

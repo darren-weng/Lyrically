@@ -1,13 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
-#selected {
-  display: block;
-  font-weight: bold;
-  color: blue;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
 }
 
-.hidden {
-  color: black;
+#content-container {
+  display: flex;
+  flex-direction: column; /* Arrange child elements in a column */
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
+  width: 75%;
+  height: 75%; /* Adjust height as needed */
+  position: relative; /* Add this line */
+  border-radius: 25px;
+}
+
+#lyrics-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  flex-wrap: wrap;         /* Ensure wrapping of letters if necessary */
+  width: 70%;             /* Ensure it takes the full width */
+  z-index: 2;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+}
+
+#lyrics-background {
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 25px;
 }
 
 .hidden {
@@ -16,6 +49,7 @@
 }
 
 .lyric {
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -25,12 +59,100 @@
   padding: 0;
   letter-spacing: -1em; 
   font-size: 16px; 
+  opacity: 0.5;
 }
 
 .correct {
-  color: green;
+  color: white;
+  opacity: 1;
 }
 
 .wrong {
   color: red;
+}
+
+.circle {
+  width: 150%;
+  height: 150%;
+  background-size: cover;
+  z-index: 0;
+  border-radius: 50%;
+  position: absolute; /* Ensure it is positioned absolutely */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for width and height */
+}
+
+#circle1 {
+  animation: moveCircle1 20s infinite alternate ease-in-out;
+}
+
+#circle2 {
+  animation: moveCircle2 20s infinite alternate ease-in-out;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+@keyframes moveCircle1 {
+  0% {
+    top: 10%;
+    left: 10%;
+  }
+  20% {
+    top: 20%;
+    left: 80%;
+  }
+  40% {
+    top: 70%;
+    left: 60%;
+  }
+  60% {
+    top: 50%;
+    left: 20%;
+  }
+  80% {
+    top: 30%;
+    left: 50%;
+  }
+  100% {
+    top: 10%;
+    left: 10%;
+  }
+}
+
+@keyframes moveCircle2 {
+  0% {
+    top: 80%;
+    left: 80%;
+  }
+  20% {
+    top: 60%;
+    left: 20%;
+  }
+  40% {
+    top: 20%;
+    left: 40%;
+  }
+  60% {
+    top: 70%;
+    left: 70%;
+  }
+  80% {
+    top: 30%;
+    left: 30%;
+  }
+  100% {
+    top: 80%;
+    left: 80%;
+  }
+}
+
+#selected {
+  display: block;
+  font-weight: bold;
+  color: white;
+}
+
+input, #comboCounter, #totalPointsOutput, #accuracyOutput {
+  margin-top: 10px;
 }

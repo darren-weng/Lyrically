@@ -26,6 +26,7 @@ async function getLyrics(track) {
    * 2: album
    * 3: duration (seconds)
    * 4: youtubeId
+   * 5: thumbnailUrl
    */
 
   const url =
@@ -37,7 +38,10 @@ async function getLyrics(track) {
     "&album_name=" +
     encodeURIComponent(musicData[2]) +
     "&duration=" +
-    musicData[3];
+    musicData[3]; 
+
+  console.log(url);
+    
 
   const response = await fetch(url, fetchOptions);
   let songData = await response.json();
@@ -84,6 +88,8 @@ async function getLyrics(track) {
   }
 
   songData.timestamps = timestampArr;
+  // add thumbanail to songData
+  songData.thumbnailUrl = musicData[5]
 
   return songData;
 }
@@ -110,7 +116,5 @@ async function transliterateJapanese(array) {
 
   return transliteratedArr;
 }
-
-getLyrics("supernova new jeans");
 
 module.exports = { getLyrics };

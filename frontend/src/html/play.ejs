@@ -21,28 +21,41 @@
       <input type="submit" value="Submit" />
     </form>
 
-    <div id="lyrics-container">
-      <!--! Prettier formatter does not properly format ejs code -->
+    <div id="content-container">
 
-      <% if (typeof lyrics != "undefined" && lyrics != null) { %> 
+      <div id="lyrics-background">
+        <div class="circle" id="circle1"></div>
+        <div class="circle" id="circle2"></div>
+      </div>
 
-      <% const arr = lyrics%>
-      <% for (let i = 0; i < arr.length; ++i) { 
-        let res = arr[i];
-      %>
-      <% if (res != "") { %>
-          <div id="<%= "lyric" + (i+1) %>" class="hidden lyric">
-          <% 
-          for (let e = 0; e < res.length; e++) { %>
-            <span id="<%= "letter" + (e+1) %>" class="letter">
-              <%= res[e] %>
-            </span>
-            <% } %>
-        </div>
-      <% } %>
-      <% } %>
-      <% } %>
-    </div>
+      <style> .circle {background-image: url(<%= thumbnailUrl %>)} </style>
+      
+      <div id="lyrics-container">
+
+        <!--! Prettier formatter does not properly format ejs code -->
+        <% if (typeof lyrics != "undefined" && lyrics != null) { %> 
+
+        <% const arr = lyrics%>
+        <% for (let i = 0; i < arr.length; ++i) { 
+          let res = arr[i];
+        %>
+        <% if (res != "") { %>
+            <div id="<%= "lyric" + (i+1) %>" class="hidden lyric">
+            <% 
+            for (let e = 0; e < res.length; e++) { %>
+              <span id="<%= "letter" + (e+1) %>" class="letter">
+                <%= res[e] %>
+              </span>
+              <% } %>
+          </div>
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+  </div>
+
+  
+
 
     <iframe
       id="audio-player"
@@ -53,14 +66,18 @@
       frameborder="0"
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
-  </body>
+
+  
   
   <input type="text" id="charInput">
   <div id="comboCounter"></div>
   <div id="totalPointsOutput"></div>
   <div id="accuracyOutput"></div>
+</body>
 
   <script defer> let timestamps = [<%= timestampsArr %>];</script>
+
   <script type="text/javascript" src="/script/play.js" defer></script>
   <script type="text/javascript" src="/script/checker.js" defer></script>
+
 </html>
