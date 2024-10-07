@@ -15,7 +15,7 @@ ytmusic = YTMusic()
 """
 
 def searchMusic(song):
-  musicResponse = ytmusic.search(song, filter="songs")[0]
+  musicResponse = ytmusic.search(song, filter="songs", limit=1)[0]
 
   musicData = [
     musicResponse["title"],

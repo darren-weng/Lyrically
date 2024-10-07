@@ -1,11 +1,10 @@
-// japanese transliterator
 const Kuroshiro = require("kuroshiro");
 const KuromojiAnalyzer = require("kuroshiro-analyzer-kuromoji");
 const kuroshiro = new Kuroshiro();
 
 const unidecode = require("unidecode");
 
-const spawn = require("child_process")
+const { spawn } = require("child_process")
 
 const fetchOptions = {
   method: "GET",
@@ -17,11 +16,33 @@ const fetchOptions = {
 const rootUrl = "https://lrclib.net/api/";
 let kuroshiroInit = false;
 
+function getMusicData(track) {
+  return new Promise((resolve, reject) => {
+    const pythonChild = spawn("python3", ["backend/src/api/ytmusic.py", track]);
+
+    pythonChild.stdout.on("data", (data) => {
+      try {
+        const musicData = JSON.parse(data);
+        resolve(musicData);
+      } catch (error) {
+        reject(error);
+      }
+    });
+
+    pythonChild.stderr.on("data", (data) => {
+      reject(new Error(`Error: ${data}`));
+    });
+
+    pythonChild.on("close", (code) => {
+      if (code !== 0) {
+        reject(new Error(`Process exited with code ${code}`));
+      }
+    });
+  });
+}
+
 // returns synced and unsynced lyrics + youtube link
 async function getLyrics(track) {
-  const ytmusic = await import("./ytmusic.mjs");
-  const musicData = await ytmusic.searchMusic(track);
-
   /** INDEXES OF MUSIC DATA
    * 0: title
    * 1: artist
@@ -30,6 +51,9 @@ async function getLyrics(track) {
    * 4: youtubeId
    * 5: thumbnailUrl
    */
+
+  const musicData = await getMusicData(track);
+
 
   const url =
     rootUrl +
@@ -96,6 +120,8 @@ async function getLyrics(track) {
   return songData;
 }
 
+
+//
 async function transliterateJapanese(array) {
   let transliteratedArr = [];
 
