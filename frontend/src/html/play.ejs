@@ -21,6 +21,13 @@
       <input type="submit" value="Submit" />
     </form>
 
+    <div id="statsContainer">
+      <input type="text" id="charInput">
+      <div id="comboCounter"></div>
+      <div id="totalPointsOutput"></div>
+      <div id="accuracyOutput"></div>
+    </div>
+
     <div id="content-container">
 
       <div id="lyrics-background">
@@ -66,13 +73,6 @@
       frameborder="0"
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
-
-  
-  
-  <input type="text" id="charInput">
-  <div id="comboCounter"></div>
-  <div id="totalPointsOutput"></div>
-  <div id="accuracyOutput"></div>
 </body>
 
   <script defer> let timestamps = [<%= timestampsArr %>];</script>

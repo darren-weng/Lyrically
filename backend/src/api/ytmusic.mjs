@@ -25,7 +25,7 @@ export async function searchMusic(title) {
   return musicData;
 }
 
-searchMusic("fortnight")
+searchMusic("cupid")
 
 async function searchAlbum(album) {
   const albums = await searchAlbums(album);

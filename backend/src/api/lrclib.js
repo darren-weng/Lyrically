@@ -5,6 +5,8 @@ const kuroshiro = new Kuroshiro();
 
 const unidecode = require("unidecode");
 
+const spawn = require("child_process")
+
 const fetchOptions = {
   method: "GET",
   headers: {
