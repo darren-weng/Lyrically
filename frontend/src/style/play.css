@@ -56,14 +56,15 @@ body {
   border-radius: 25px;
 }
 
-.hidden {
-  display: none;
-  opacity: 0;
-}
-
 .lyric {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* keep hidden under lyric so the display:none overrides flex */
+.hidden {
+  display: none;
+  opacity: 0;
 }
 
 .letter {

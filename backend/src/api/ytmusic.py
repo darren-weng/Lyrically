@@ -28,4 +28,5 @@ def searchMusic(song):
   ]
   return json.dumps(musicData)
 
+#! do not remove this
 print(searchMusic(sys.argv[1]))

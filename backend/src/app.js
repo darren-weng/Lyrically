@@ -35,7 +35,6 @@ app.get("/search", (_, res) => {
   res.render(path.join(htmlDir, "search-page"));
 });
 
-
 app.listen(port, () => {
   console.log("App listening on port " + port);
 });

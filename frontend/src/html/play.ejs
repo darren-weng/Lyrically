@@ -38,7 +38,6 @@
       <style> .circle {background-image: url(<%= thumbnailUrl %>)} </style>
       
       <div id="lyrics-container">
-
         <!--! Prettier formatter does not properly format ejs code -->
         <% if (typeof lyrics != "undefined" && lyrics != null) { %> 
 
@@ -58,6 +57,9 @@
         <% } %>
         <% } %>
         <% } %>
+      <div id="skipIntro" class="hidden lyric">
+        <span>[music] (press space to skip)</span>
+        </div>
       </div>
   </div>
 

@@ -27,12 +27,17 @@ function onPlayerStateChange(event) {
 }
 
 // ****************************** FUNCTIONS ******************************
+// variable to skip to beginning of song
+let skipToBeginning = false; 
 
 function selectLyricsLine() {
   let currTime = player.getCurrentTime();
   let lyricsElements = document.getElementById("lyrics-container").children;
   let selectedLine;
   let selectedIndex = -1;
+
+  const charInput = document.getElementById("charInput");
+
 
   // gets index of selected line
   for (let i = 0; i < lyricsElements.length; ++i) {
@@ -43,12 +48,25 @@ function selectLyricsLine() {
   }
 
   // sets selected line if none
+  //? come back to this and make it so it shows no lyrics and allows for users to skip
+    function spaceHandler(event) {
+      if (selectedIndex == -1 && skipToBeginning == false && event.key === " ") {
+        event.preventDefault();
+        skipToBeginning = true;
+        player.seekTo(timestamps[0] - (timestamps[0] / 8), true);
+        }
+      else {
+          charInput.removeEventListener("keydown", spaceHandler);
+      }
+    }
+    charInput.addEventListener("keydown", spaceHandler);
+  
   if (selectedIndex == -1) {
-    selectedLine = lyricsElements[0];
-    console.log(lyricsElements[0]);
+    selectedLine = lyricsElements[lyricsElements.length - 1];
+    // console.log(lyricsElements[0]);
     selectedLine.classList.remove("hidden");
-    selectedLine.id = "selected";
-    selectedIndex = 0;
+    // selectedLine.id = "selected";
+    selectedIndex = -1;
   }
 
   // stops timestamp tracker if video completed
@@ -71,4 +89,3 @@ function selectLyricsLine() {
     ++selectedIndex;
   }
 }
-
